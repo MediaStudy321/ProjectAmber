@@ -195,7 +195,7 @@ app.get('/countries/:name', (req, res)=> {
 // DILEMMAS
 
 app.get('/dilemma/', function(req, res){
-    console.log(dilemmas[0])
+    console.log(dilemmas[10])
     Player.findById(req.session.userid, (error,result)=>{
       if(error) {
         console.log(error);
@@ -203,8 +203,8 @@ app.get('/dilemma/', function(req, res){
       } else if(!result) {
         res.send('Oops!');
       } else {
-        if(result.dilemmaNumber==dilemmas.length){
-          res.send('Thank you for playing our prototype');
+        if(result.dilemmaNumber== 3){
+          res.send('Thank you for playing our prototype, more on the way!');
         }
         else{
           res.render('decisions', {dilemma: dilemmas[result.dilemmaNumber], numDil: result.dilemmaNumber});

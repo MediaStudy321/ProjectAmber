@@ -195,7 +195,8 @@ app.get('/countries/:name', (req, res)=> {
 // DILEMMAS
 
 app.get('/dilemma/', function(req, res){
-    console.log(dilemmas[10])
+    console.log(dilemmas[0])
+    var coolDown = 0;
     Player.findById(req.session.userid, (error,result)=>{
       if(error) {
         console.log(error);
@@ -203,7 +204,7 @@ app.get('/dilemma/', function(req, res){
       } else if(!result) {
         res.send('Oops!');
       } else {
-        if(result.dilemmaNumber== 3){
+        if(result.dilemmaNumber==dilemmas.length){
           res.send('Thank you for playing our prototype, more on the way!');
         }
         else{
@@ -224,6 +225,11 @@ app.post('/decision', function(req, res){
         res.send('Oops!');
       } else {
           result.dilemmaNumber += 1;
+          result.country.resources.pizzas += Math.floor(Math.random() * 1000);
+          result.country.resources.ore += Math.floor(Math.random() * 10);
+          result.country.resources.energy += Math.floor(Math.random() * 10);
+          result.country.resources. water += Math.floor(Math.random()* 10);
+          result.country.resources. population += Math.floor(Math.random() * 100);
           result.save();
           res.redirect('game');
       }

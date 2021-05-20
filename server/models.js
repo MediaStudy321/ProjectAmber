@@ -38,30 +38,17 @@ const stockpileSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    population: {
+        type: Number,
+        default: 150
+    },
 });
 
-const populationSchema = new mongoose.Schema({
-    Fenguli: {
-        type: Number,
-        default: 0
-    },
-    Ascended: {
-        type: Number,
-        default: 0
-    },
-    Cosmeys: {
-        type: Number,
-        default: 0
-    }
-});
 
 const countrySchema = new mongoose.Schema({
     name: {
         type: String,
         unique: true,
-    },
-    demographics: {
-        type: populationSchema,
     },
     resources: {
         type: stockpileSchema,
@@ -111,7 +98,8 @@ const playerSchema = new mongoose.Schema({
                 pizzas: 100,
                 ore: 0,
                 energy: 0,
-                water: 0
+                water: 0,
+                population: 150
             }
         }
     },
